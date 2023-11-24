@@ -1,12 +1,22 @@
 .footer {
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 9999;
     padding: 10px 20px;
+    background-color: #d9c89e;
 
     p {
+        padding: 10px 0;
+        font-size: 18px;
+        letter-spacing: 1px;
+        color: #fff;
         text-align: center;
+    }
+}
+
+@media (max-width: 500px){
+    .footer {
+        p {
+            padding: 0;
+            font-size: 15px;
+        }
     }
 }

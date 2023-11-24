@@ -31,19 +31,19 @@ const Header = () => {
                                 <Link to="/">Home</Link>
                             </li>
                             <li className="navItem">
-                                <Link to="/login">Product list</Link>
+                                <Link to="/products">Product list</Link>
                             </li>
                             <li className="navItem">
-                                <Link to="/registration">Create product</Link>
+                                <Link to="/create-product">Create product</Link>
                             </li>
                         </ul>
                     </nav>
                     <div className="accountLinks">
-                        <Link to="/">
+                        <Link to="/login">
                             <CiUser className="icon" />
                             <span>Profile</span>
                         </Link>
-                        <Link to="/">
+                        <Link to="/registration">
                             <LuDoorOpen className="icon" />
                             <span>Exit</span>
                         </Link>
@@ -60,10 +60,10 @@ const Header = () => {
                         <Link to="/">Home</Link>
                     </li>
                     <li className="menuItem">
-                        <Link to="/login">Product list</Link>
+                        <Link to="/products">Product list</Link>
                     </li>
                     <li className="menuItem">
-                        <Link to="/registration">Create product</Link>
+                        <Link to="/create-product">Create product</Link>
                     </li>
                 </ul>
             </div>

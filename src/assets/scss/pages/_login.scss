@@ -15,7 +15,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: .9;
         }
     }
 
@@ -160,31 +159,53 @@
     }
 }
 
-@media (max-width: 370px) {
+@media (max-width: 500px) {
     .login {
-        .loginBox {
-            width: 90%;
-            padding: 30px;
-            gap: 15px;
+        .container {
+            .row {
+                .loginBox {
+                    padding: 30px 20px;
+                    gap: 20px;
+                    border-radius: 15px;
 
-            .input {
-                height: 40px;
-                padding: 13px 20px;
-                border-radius: 30px;
-                font-size: 15px;
+                    .input {
+                        height: 37px;
+                        padding: 10px 16px;
+                        border-radius: 20px;
+                        font-size: 15px;
+                    }
+
+                    .btn {
+                        height: 37px;
+                        padding: 10px 16px;
+                        border-radius: 20px;
+                        font-size: 15px;
+                    }
+
+                    .links {
+                        padding: 5px 15px;
+
+                        a {
+                            font-size: 15px;
+                        }
+                    }
+                }
             }
+        }
+    }
+}
 
-            .btn {
-                padding: 10px 0;
-                border-radius: 30px;
-                font-size: 15px;
-            }
+@media (max-width: 350px) {
+    .login {
+        .container {
+            .row {
+                .loginBox {
+                    width: 90%;
+                    padding: 20px 10px;
 
-            .links {
-                padding: 10px 0;
-
-                a {
-                    font-size: 14px;
+                    .btn {
+                        font-size: 14px;
+                    }
                 }
             }
         }

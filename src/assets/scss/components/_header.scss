@@ -1,11 +1,7 @@
 .header {
     width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9999;
     padding: 10px 20px;
-    background: linear-gradient(#00000080, transparent);
+    background-color: #d9c89e;
 
     .container {
         .row {
@@ -41,7 +37,7 @@
                         transition: all .3s ease;
 
                         &:hover {
-                            color: #ba9f79;
+                            color: #272729;
                             text-decoration: underline;
                         }
                     }
@@ -64,23 +60,25 @@
                     .icon {
                         color: #fff;
                         font-size: 18px;
+                        transition: all .3s ease;
                     }
 
                     span {
                         color: #fff;
                         font-size: 18px;
+                        transition: all .3s ease;
                     }
 
                     &:hover {
-                        color: #ba9f79;
+                        color: #272729;
                         text-decoration: underline;
 
                         .icon {
-                            color: #ba9f79;
+                            color: #272729;
                         }
 
                         span {
-                            color: #ba9f79;
+                            color: #272729;
                         }
                     }
                 }

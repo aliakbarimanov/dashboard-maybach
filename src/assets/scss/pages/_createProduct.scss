@@ -1,0 +1,170 @@
+.createPage {
+    width: 100%;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background-color: #ba9f79;
+
+    .createPageTitle{
+        width: 100%;
+        color: #000;
+        font-size: 30px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    form{
+        width: 40%;
+        margin: 0 auto;
+        padding: 60px 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 5px;
+        border: 1px solid #000;
+        border-radius: 15px;
+
+        label{
+            padding: 0 10px;
+            font-size: 17px;
+            letter-spacing: 1px;
+        }
+
+        .input {
+            outline: none;
+            border: none;
+            width: 100%;
+            height: 47px;
+            padding: 13px 20px;
+            margin-bottom: 10px;
+            border-radius: 30px;
+            font-size: 17px;
+            background-color: #ffffff50;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all .2s ease;
+
+            &::placeholder {
+                color: #00000090;
+            }
+
+            &:hover {
+                border: 1px solid #000;
+            }
+        }
+
+        .btn {
+            outline: none;
+            border: none;
+            width: 100%;
+            padding: 13px 0;
+            border-radius: 30px;
+            border: 1px solid #000;
+            font-size: 17px;
+            letter-spacing: 2px;
+            color: #fff;
+            background-color: #ba9f79;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .3s ease;
+
+            &:hover {
+                color: #ba9f79;
+                background-color: #fff;
+            }
+        }
+
+        .newImageBox{
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 10px;
+            border-radius: 10px;
+            background-color: #ffffff50;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                border-radius: 30px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px){
+    .createPage {
+        form{
+            padding: 60px;
+        }
+    }
+}
+
+@media (max-width: 990px){
+    .createPage {
+        form{
+            width: 60%;
+        }
+    }
+}
+
+@media (max-width: 650px){
+    .createPage {
+        .createPageTitle{
+            font-size: 25px;
+        }
+    
+        form{
+            width: 80%;
+    
+            label{
+                font-size: 15px;
+            }
+    
+            .input {
+                height: 40px;
+                padding: 10px 20px;
+                border-radius: 25px;
+                font-size: 15px;
+            }
+    
+            .btn {
+                padding: 10px 0;
+                border-radius: 25px;
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media (max-width: 450px){
+    .createPage {
+        .createPageTitle{
+            padding: 0 20px;
+            font-size: 20px;
+        }
+    
+        form{
+            width: 80%;
+            padding: 40px 20px;
+
+            .newImageBox{
+                width: 150px;
+                height: 150px;
+            }
+        }
+    }
+}
+
+@media (max-width: 350px){
+    .createPage {
+        gap: 15px;
+    
+        form{
+            width: 90%;
+        }
+    }
+}

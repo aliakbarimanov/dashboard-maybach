@@ -34,3 +34,41 @@
         }
     }
 }
+
+@media (max-width: 800px){
+    .hero {
+        .container {
+            .row {
+                .backgroundImg {    
+                    img {
+                        object-position: 20%;
+                    }
+                }
+    
+                .heroTitle {
+                    font-size: 35px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px){
+    .hero {
+        .container {
+            .row {
+                .backgroundImg {    
+                    img {
+                        object-position: 30%;
+                    }
+                }
+    
+                .heroTitle {
+                    padding: 0 20px;
+                    font-size: 25px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}
