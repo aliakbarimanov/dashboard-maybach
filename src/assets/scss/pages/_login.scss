@@ -1,0 +1,192 @@
+.login {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    .backgroundImage {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: .9;
+        }
+    }
+
+    .container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9;
+        height: 100%;
+
+        .row {
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+
+            .loginBox {
+                width: 40%;
+                padding: 60px 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 30px;
+                backdrop-filter: blur(8px);
+                border: 1px solid #ba9f79;
+                border-radius: 15px;
+
+                .input {
+                    outline: none;
+                    border: none;
+                    width: 100%;
+                    height: 47px;
+                    padding: 13px 20px;
+                    border-radius: 30px;
+                    font-size: 17px;
+                    background-color: #ffffff50;
+                    backdrop-filter: blur(10px);
+                    cursor: pointer;
+                    transition: all .2s ease;
+
+                    &::placeholder {
+                        color: #000;
+                    }
+
+                    &:hover {
+                        border: 1px solid #000;
+                    }
+                }
+
+                .btn {
+                    outline: none;
+                    border: none;
+                    width: 100%;
+                    padding: 13px 0;
+                    border-radius: 30px;
+                    font-size: 17px;
+                    letter-spacing: 2px;
+                    color: #fff;
+                    background-color: #ba9f79;
+                    text-transform: uppercase;
+                    cursor: pointer;
+                    transition: all .3s ease;
+
+                    &:hover {
+                        color: #ba9f79;
+                        background-color: #fff;
+                    }
+                }
+
+                .links {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 15px;
+
+                    a {
+                        font-size: 18px;
+                        letter-spacing: 1px;
+                        color: #000;
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            color: #ba9f79;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .login {
+        .container {
+            .row {
+                .loginBox {
+                    padding: 60px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 990px) {
+    .login {
+        .container {
+            .row {
+                .loginBox {
+                    width: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 790px) {
+    .login {
+        .container {
+            .row {
+                .loginBox {
+                    width: 60%;
+                    padding: 40px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 590px) {
+    .login {
+        .container {
+            .row {
+                .loginBox {
+                    width: 80%;
+                    padding: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 370px) {
+    .login {
+        .loginBox {
+            width: 90%;
+            padding: 30px;
+            gap: 15px;
+
+            .input {
+                height: 40px;
+                padding: 13px 20px;
+                border-radius: 30px;
+                font-size: 15px;
+            }
+
+            .btn {
+                padding: 10px 0;
+                border-radius: 30px;
+                font-size: 15px;
+            }
+
+            .links {
+                padding: 10px 0;
+
+                a {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

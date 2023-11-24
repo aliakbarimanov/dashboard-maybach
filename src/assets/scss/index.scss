@@ -1,0 +1,12 @@
+// import reset codes
+@import "./base";
+
+// import pages
+@import "./pages/home";
+@import "./pages/login";
+@import "./pages//registration";
+@import "./pages/notFound";
+
+// import components
+@import "./components/header";
+@import "./components/footer";

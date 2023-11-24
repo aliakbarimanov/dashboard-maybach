@@ -1,0 +1,36 @@
+.hero {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    .container {
+        .row {
+            .backgroundImg {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .heroTitle {
+                width: 100%;
+                font-size: 40px;
+                font-weight: 500;
+                color: #070709;
+                position: absolute;
+                top: 80%;
+                left: 0;
+                z-index: 1;
+                text-align: center;
+            }
+        }
+    }
+}

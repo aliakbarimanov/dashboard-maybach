@@ -1,0 +1,237 @@
+.header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    padding: 10px 20px;
+    background: linear-gradient(#00000080, transparent);
+
+    .container {
+        .row {
+            justify-content: space-between;
+            align-items: center;
+
+            .burgerIcon {
+                display: none;
+                color: #fff;
+                font-size: 25px;
+                cursor: pointer;
+            }
+
+            .logo {
+                margin-right: 70px;
+
+                img {
+                    object-fit: contain;
+                }
+            }
+
+            .navBar {
+                .navList {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 10px;
+
+                    a {
+                        color: #fff;
+                        font-size: 18px;
+                        padding: 5px 10px;
+                        transition: all .3s ease;
+
+                        &:hover {
+                            color: #ba9f79;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            .accountLinks {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 5px;
+                    padding: 5px 10px;
+                    transition: all .3s ease;
+
+                    .icon {
+                        color: #fff;
+                        font-size: 18px;
+                    }
+
+                    span {
+                        color: #fff;
+                        font-size: 18px;
+                    }
+
+                    &:hover {
+                        color: #ba9f79;
+                        text-decoration: underline;
+
+                        .icon {
+                            color: #ba9f79;
+                        }
+
+                        span {
+                            color: #ba9f79;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .mobileMenu {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        transition: all 0.3s ease;
+
+        &.active {
+            width: 350px;
+            height: 100vh;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .closeButton {
+            width: 100%;
+            height: 45px;
+            outline: none;
+            border: none;
+            background-color: #ba9f79;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: #fff;
+                border-bottom: 1px solid #ba9f79;
+
+                span {
+                    color: #ba9f79;
+                }
+
+                .closeIcon {
+                    color: #ba9f79;
+                }
+            }
+
+            span {
+                color: #fff;
+                font-size: 18px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                user-select: none;
+            }
+
+            .closeIcon {
+                color: #fff;
+                font-size: 24px;
+                user-select: none;
+            }
+        }
+
+        .menuList {
+            width: 100%;
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            .menuItem {
+                a {
+                    display: inline-block;
+                    padding: 5px 10px;
+                    font-size: 15px;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    color: #ba9f79;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        text-decoration: underline;
+                        color: #ba9f7990;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .header {
+        .container {
+            .row {
+                .burgerIcon {
+                    display: block;
+                    margin-right: 100px;
+                }
+
+                .logo {
+                    margin-right: 0;
+                }
+
+                .navBar {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .header {
+        .container {
+            .row {
+                .burgerIcon {
+                    margin-right: 0;
+                }
+
+                .logo {
+                    display: none;
+                }
+
+                .accountLinks {
+                    a {
+                        .icon {
+                            font-size: 16px;
+                        }
+
+                        span {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 350px) {
+    .header {
+        .mobileMenu {
+            width: 100%;
+        }
+    }
+}
