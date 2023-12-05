@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
     gap: 30px;
-    background-color: #ba9f79;
+    background-color: #171719;
 
     .productsPageTitle {
         width: 100%;
@@ -15,7 +15,7 @@
         text-transform: uppercase;
         text-align: center;
         letter-spacing: 2px;
-        color: #000;
+        color: #fff;
     }
 
     table {
@@ -27,9 +27,9 @@
             th {
                 letter-spacing: 1px;
                 text-align: start;
-                color: #000;
+                color: #fff;
                 padding: 10px;
-                border: 1px solid #000;
+                border: 1px solid #fff;
             }
         }
 
@@ -38,9 +38,62 @@
                 td {
                     letter-spacing: 1px;
                     text-align: start;
-                    color: #000;
-                    padding: 10px;
-                    border: 1px solid #000;
+                    color: #fff;
+                    padding: 10px 20px;
+                    border: 1px solid #fff;
+
+                    &.img{
+                        width: 150px;
+                        height: 150px;
+
+                        img{
+                            width: 100%;
+                            object-fit: contain;
+                        }
+                    }
+
+                    &.details{
+                        height: 162px;
+                        display: inline-block;
+                        overflow-y: auto;
+                        font-size: 14px;
+                        line-height: 140%;
+                        letter-spacing: 1px;
+                    }
+
+                    &.price{
+                        white-space: nowrap;
+                    }
+
+                    &.actions{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+                        height: 162px;
+
+                        button{
+                            width: 40px;
+                            height: 40px;
+                            border: 1px solid #000;
+                            outline: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            transition: all .3s ease;
+
+                            &:hover{
+                                background-color: #272729;
+
+                                svg{
+                                    color: #fff;
+                                }
+                            }
+
+                            svg{
+                                font-size: 20px;
+                            }
+                        }
+                    }
                 }
             }
         }

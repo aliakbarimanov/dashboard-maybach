@@ -1,7 +1,7 @@
 .header {
     width: 100%;
     padding: 10px 20px;
-    background-color: #d9c89e;
+    background-color: #070709;
 
     .container {
         .row {
@@ -37,7 +37,7 @@
                         transition: all .3s ease;
 
                         &:hover {
-                            color: #272729;
+                            color: #fff;
                             text-decoration: underline;
                         }
                     }
@@ -70,15 +70,15 @@
                     }
 
                     &:hover {
-                        color: #272729;
+                        color: #fff;
                         text-decoration: underline;
 
                         .icon {
-                            color: #272729;
+                            color: #fff;
                         }
 
                         span {
-                            color: #272729;
+                            color: #fff;
                         }
                     }
                 }

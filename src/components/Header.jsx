@@ -43,7 +43,7 @@ const Header = () => {
                             <CiUser className="icon" />
                             <span>Profile</span>
                         </Link>
-                        <Link to="/registration">
+                        <Link>
                             <LuDoorOpen className="icon" />
                             <span>Exit</span>
                         </Link>

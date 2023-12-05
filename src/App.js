@@ -13,6 +13,9 @@ import ProductsPage from "./pages/ProductsPage";
 import CreateProduct from "./pages/CreateProduct";
 import NotFound from "./pages/NotFound";
 
+// import routes
+import ProtectedRoutes from "./routes/ProtectedRoutes";
+
 // import Routes
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -25,8 +28,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/create-product" element={<CreateProduct />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/create-product" element={<CreateProduct />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
