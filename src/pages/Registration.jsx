@@ -29,9 +29,9 @@ const Registration = () => {
   };
 
   const registerSchema = object({
-    userName: string().trim().required("Name is empty!"),
+    name: string().trim().required("Name is empty!"),
     surname: string().trim().required("Surname is empty!"),
-    mail: string().trim().required("Mail is empty!"),
+    email: string().trim().required("Mail is empty!"),
     password: string()
       .trim()
       .required("Password is empty!")
@@ -57,18 +57,18 @@ const Registration = () => {
       <div className="container">
         <div className="row">
           <form className="registrationBox" onSubmit={handleSubmit(onSubmit)}>
-            {errors.userName && (
+            {errors.name && (
               <span className="inputErrorMessage">
-                {errors.userName.message}
+                {errors.name.message}
               </span>
             )}
             <input
               type="text"
-              name="userName"
+              name="name"
               className="input"
               id="name"
               placeholder="Name"
-              {...register("userName")}
+              {...register("name")}
             />
             {errors.surname && (
               <span className="inputErrorMessage">
@@ -83,16 +83,16 @@ const Registration = () => {
               placeholder="Surname"
               {...register("surname")}
             />
-            {errors.mail && (
-              <span className="inputErrorMessage">{errors.mail.message}</span>
+            {errors.email && (
+              <span className="inputErrorMessage">{errors.email.message}</span>
             )}
             <input
               type="email"
-              name="mail"
+              name="email"
               className="input"
               id="mail"
               placeholder="Mail / Username"
-              {...register("mail")}
+              {...register("email")}
             />
             {errors.password && (
               <span className="inputErrorMessage">

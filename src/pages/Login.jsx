@@ -20,12 +20,14 @@ const Login = () => {
   const onSubmit = async (data) => {
     await axios
       .post("http://localhost:8000/api/login", data)
-      .then(console.log(data))
+      .then((res) => {
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+      })
       .catch((err) => console.warn(err));
   };
 
   const loginSchema = object({
-    userName: string().trim().required("Name is empty!"),
+    email: string().trim().required("Mail is empty!"),
     password: string()
       .trim()
       .required("Password is empty!")
@@ -51,18 +53,16 @@ const Login = () => {
       <div className="container">
         <div className="row">
           <form className="loginBox" onSubmit={handleSubmit(onSubmit)}>
-            {errors.userName && (
-              <span className="inputErrorMessage">
-                {errors.userName.message}
-              </span>
+            {errors.email && (
+              <span className="inputErrorMessage">{errors.email.message}</span>
             )}
             <input
-              type="text"
-              name="userName"
+              type="email"
+              name="email"
               className="input"
-              id="userName"
-              placeholder="Mail / Username"
-              {...register("userName")}
+              id="email"
+              placeholder="Mail"
+              {...register("email")}
             />
             {errors.password && (
               <span className="inputErrorMessage">

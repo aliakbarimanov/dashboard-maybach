@@ -19,24 +19,32 @@ import ProtectedRoutes from "./routes/ProtectedRoutes";
 // import Routes
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// import redux
+import { Provider } from "react-redux";
+
+// import redux store
+import { store } from "./redux/store";
+
 function App() {
   return (
-    <BrowserRouter>
-      <main>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/create-product" element={<CreateProduct />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-      </main >
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <main>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/create-product" element={<CreateProduct />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </main >
+      </BrowserRouter>
+    </Provider>
   );
 }
 
