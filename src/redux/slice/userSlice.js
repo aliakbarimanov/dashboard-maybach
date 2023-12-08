@@ -1,9 +1,6 @@
 // import redux toolkit
 import { createSlice } from "@reduxjs/toolkit";
 
-// import react hook
-import { useEffect } from "react";
-
 // import axios
 import axios from "axios";
 
