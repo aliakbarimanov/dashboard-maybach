@@ -1,11 +1,8 @@
 // import images
 import BackgroundImage from "../assets/images/background.webp";
 
-// import axios
-import axios from "axios";
-
-// import react hooks
-import { useContext } from "react";
+// import react-router-dom
+import { Link } from "react-router-dom";
 
 // import react-hook-form
 import { useForm } from "react-hook-form";
@@ -13,29 +10,17 @@ import { useForm } from "react-hook-form";
 // import yup
 import { object, string } from "yup";
 
-// import yupResolver
+// import
 import { yupResolver } from "@hookform/resolvers/yup";
 
-// import Link
-import { Link } from "react-router-dom";
-
-// import Context
-import { Context } from "../utils/MainContext";
-
-const Login = () => {
-  const { checkLogin } = useContext(Context);
-
+const Profile = () => {
   const onSubmit = async (data) => {
-    await axios
-      .post("http://localhost:8000/api/login", data)
-      .then((res) => {
-        localStorage.setItem("token", JSON.stringify(res.data.token));
-        checkLogin();
-      })
-      .catch((err) => console.warn(err));
+    console.log(data);
   };
 
-  const loginSchema = object({
+  const updateSchema = object({
+    name: string().trim().required("Name is empty!"),
+    surname: string().trim().required("Surname is empty!"),
     email: string().trim().required("Mail is empty!"),
     password: string()
       .trim()
@@ -51,17 +36,41 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(updateSchema),
   });
 
   return (
-    <div className="login">
+    <div className="profile">
       <div className="backgroundImage">
         <img src={BackgroundImage} alt="Background img" />
       </div>
       <div className="container">
         <div className="row">
-          <form className="loginBox" onSubmit={handleSubmit(onSubmit)}>
+          <form className="profileBox" onSubmit={handleSubmit(onSubmit)}>
+            {errors.name && (
+              <span className="inputErrorMessage">{errors.name.message}</span>
+            )}
+            <input
+              type="text"
+              name="name"
+              className="input"
+              id="name"
+              placeholder="Name"
+              {...register("name")}
+            />
+            {errors.surname && (
+              <span className="inputErrorMessage">
+                {errors.surname.message}
+              </span>
+            )}
+            <input
+              type="text"
+              name="surname"
+              className="input"
+              id="surname"
+              placeholder="Surname"
+              {...register("surname")}
+            />
             {errors.email && (
               <span className="inputErrorMessage">{errors.email.message}</span>
             )}
@@ -69,8 +78,8 @@ const Login = () => {
               type="email"
               name="email"
               className="input"
-              id="email"
-              placeholder="Mail"
+              id="mail"
+              placeholder="Mail / Username"
               {...register("email")}
             />
             {errors.password && (
@@ -86,9 +95,9 @@ const Login = () => {
               placeholder="Password"
               {...register("password")}
             />
-            <button className="btn">Sign In</button>
+            <button className="btn">Update</button>
             <div className="links">
-              <Link to="/registration">Register</Link>
+              <Link to="/reset-password">Reset password</Link>
             </div>
           </form>
         </div>
@@ -97,4 +106,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Profile;

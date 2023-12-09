@@ -22,8 +22,6 @@ const ProductsPage = () => {
       .catch((err) => console.warn(err));
   };
 
-  console.log(data);
-
   return (
     <section className="productsPage">
       <h2 className="productsPageTitle">All products</h2>
@@ -38,7 +36,7 @@ const ProductsPage = () => {
         </thead>
         <tbody>
           {data.map((item, ind) => (
-            <tr>
+            <tr key={ind}>
               <td>{ind + 1}.</td>
               <td className="img">
                 <img

@@ -1,11 +1,14 @@
 // import react hooks
-import { useState } from "react";
+import { useContext } from "react";
 
 // import react-router-dom
 import { Outlet, Navigate } from "react-router-dom";
 
+// import Context
+import { Context } from "../utils/MainContext";
+
 const ProtectedRoutes = () => {
-    const [userIn, setUserIn] = useState(true);
+    const { userIn } = useContext(Context);
 
     return userIn ? <Outlet /> : <Navigate to="/login" />;
 }

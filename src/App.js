@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 // import pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import ResetPassword from "./pages/ResetPassword";
 import Registration from "./pages/Registration";
 import ProductsPage from "./pages/ProductsPage";
 import CreateProduct from "./pages/CreateProduct";
@@ -19,23 +21,22 @@ import ProtectedRoutes from "./routes/ProtectedRoutes";
 // import Routes
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// import redux
-import { Provider } from "react-redux";
-
-// import redux store
-import { store } from "./redux/store";
+// import Context
+import { MainContext } from "./utils/MainContext";
 
 function App() {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <MainContext>
         <main>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route element={<ProtectedRoutes />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/create-product" element={<CreateProduct />} />
             </Route>
@@ -43,8 +44,8 @@ function App() {
           </Routes>
           <Footer />
         </main >
-      </BrowserRouter>
-    </Provider>
+      </MainContext>
+    </BrowserRouter>
   );
 }
 

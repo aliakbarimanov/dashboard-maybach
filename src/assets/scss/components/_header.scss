@@ -82,6 +82,44 @@
                         }
                     }
                 }
+
+                .exitBtn{
+                    outline: none;
+                    border: none;
+                    background-color: transparent;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 5px;
+                    padding: 5px 10px;
+                    transition: all .3s ease;
+
+                    .icon {
+                        color: #fff;
+                        font-size: 18px;
+                        transition: all .3s ease;
+                    }
+
+                    span {
+                        color: #fff;
+                        font-size: 18px;
+                        transition: all .3s ease;
+                    }
+
+                    &:hover {
+                        color: #fff;
+                        text-decoration: underline;
+
+                        .icon {
+                            color: #fff;
+                        }
+
+                        span {
+                            color: #fff;
+                        }
+                    }
+                }
             }
         }
     }
