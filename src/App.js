@@ -13,6 +13,7 @@ import ResetPassword from "./pages/ResetPassword";
 import Registration from "./pages/Registration";
 import ProductsPage from "./pages/ProductsPage";
 import CreateProduct from "./pages/CreateProduct";
+import EditProduct from "./pages/EditProduct";
 import NotFound from "./pages/NotFound";
 
 // import routes
@@ -39,6 +40,7 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/create-product" element={<CreateProduct />} />
+              <Route path="/edit-product/:id" element={<EditProduct/>} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
