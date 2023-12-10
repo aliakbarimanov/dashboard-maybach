@@ -1,43 +1,37 @@
 // import images
 import BackgroundImage from "../assets/images/background.webp";
+import User from "../assets/images/user.png";
+
+// import react hooks
+import { useContext } from "react";
 
 // import react-router-dom
 import { Link } from "react-router-dom";
 
-// import react-hook-form
-import { useForm } from "react-hook-form";
+// import axios
+import axios from "axios";
 
-// import yup
-import { object, string } from "yup";
-
-// import
-import { yupResolver } from "@hookform/resolvers/yup";
+// import Context
+import { Context } from "../utils/MainContext";
 
 const Profile = () => {
-  const onSubmit = async (data) => {
-    console.log(data);
+  const { user, setUser } = useContext(Context);
+
+  const changeImg = async (e) => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const profileImg = e.target.files[0];
+
+    const body = new FormData();
+    body.append("token", token);
+    body.append("profileImage", profileImg);
+
+    await axios
+      .put("http://localhost:8000/api/users/profile", body)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => console.warn(err));
   };
-
-  const updateSchema = object({
-    name: string().trim().required("Name is empty!"),
-    surname: string().trim().required("Surname is empty!"),
-    email: string().trim().required("Mail is empty!"),
-    password: string()
-      .trim()
-      .required("Password is empty!")
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-        "Minimum 8 character, 1 letter and 1 number required!"
-      ),
-  });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(updateSchema),
-  });
 
   return (
     <div className="profile">
@@ -46,56 +40,25 @@ const Profile = () => {
       </div>
       <div className="container">
         <div className="row">
-          <form className="profileBox" onSubmit={handleSubmit(onSubmit)}>
-            {errors.name && (
-              <span className="inputErrorMessage">{errors.name.message}</span>
-            )}
-            <input
-              type="text"
-              name="name"
-              className="input"
-              id="name"
-              placeholder="Name"
-              {...register("name")}
-            />
-            {errors.surname && (
-              <span className="inputErrorMessage">
-                {errors.surname.message}
-              </span>
-            )}
-            <input
-              type="text"
-              name="surname"
-              className="input"
-              id="surname"
-              placeholder="Surname"
-              {...register("surname")}
-            />
-            {errors.email && (
-              <span className="inputErrorMessage">{errors.email.message}</span>
-            )}
-            <input
-              type="email"
-              name="email"
-              className="input"
-              id="mail"
-              placeholder="Mail / Username"
-              {...register("email")}
-            />
-            {errors.password && (
-              <span className="inputErrorMessage">
-                {errors.password.message}
-              </span>
-            )}
-            <input
-              type="password"
-              name="password"
-              className="input"
-              id="password"
-              placeholder="Password"
-              {...register("password")}
-            />
-            <button className="btn">Update</button>
+          <form className="profileBox">
+            <h2 className="fullName">
+              <span>{user.name}</span>
+              <span>{user.surname}</span>
+            </h2>
+            <h3 className="email">{user.email}</h3>
+            <div className="profileImageArea">
+              <div className="profileImg">
+                {user.profileImage ? (
+                  <img
+                    src={`http://localhost:8000/${user.profileImage}`}
+                    alt="Profile image"
+                  />
+                ) : (
+                  <img className="defaultImg" src={User} alt="Profile image" />
+                )}
+              </div>
+              <input type="file" onChange={changeImg} />
+            </div>
             <div className="links">
               <Link to="/reset-password">Reset password</Link>
             </div>

@@ -8,7 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 
 // import sweet alert
-import swal from "sweetalert";
+// import swal from "sweetalert";
 
 const ResetPassword = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -16,7 +16,6 @@ const ResetPassword = () => {
   const [userPass, setUserPass] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
   const [step, setStep] = useState("email");
-
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -41,9 +40,7 @@ const ResetPassword = () => {
             console.log(err);
           });
       }
-    }
-
-    if (step === "otp") {
+    } else if (step === "otp") {
       if (userOtp.trim() === "") {
         setErrorMessage(true);
       } else {
@@ -63,9 +60,7 @@ const ResetPassword = () => {
             console.log(err);
           });
       }
-    }
-
-    if (step === "password") {
+    } else {
       if (userPass.trim() === "") {
         setErrorMessage(true);
       } else {
@@ -79,14 +74,8 @@ const ResetPassword = () => {
         await axios
           .post("http://localhost:8000/api/change-password", body)
           .then((res) => {
-            // swal(
-            //   <div>
-            //     <h1>Hello world!</h1>
-            //     <p>This is now rendered with JSX!</p>
-            //   </div>
-            // );
+            alert("Salam");
             localStorage.removeItem("token");
-            window.location.reload();
           })
           .catch((err) => {
             console.log(err);
@@ -102,7 +91,7 @@ const ResetPassword = () => {
       </div>
       <div className="container">
         <div className="row">
-          {step === "email" && (
+          {step === "email" ? (
             <form className="resetPassForm" onSubmit={onSubmit}>
               <span className="inputErrorMessage">
                 {errorMessage && "Email daxil etmədiniz!"}
@@ -113,12 +102,12 @@ const ResetPassword = () => {
                 className="input"
                 id="email"
                 placeholder="Mail"
+                value={userEmail}
                 onChange={(e) => setUserEmail(e.target.value)}
               />
               <button className="btn">Submit email</button>
             </form>
-          )}
-          {step === "otp" && (
+          ) : step === "otp" ? (
             <form className="resetPassForm" onSubmit={onSubmit}>
               <span className="inputErrorMessage">
                 {errorMessage && "OTP kodu daxil etmədiniz!"}
@@ -129,12 +118,12 @@ const ResetPassword = () => {
                 className="input"
                 id="otp"
                 placeholder="OTP Code"
+                value={userOtp}
                 onChange={(e) => setUserOtp(e.target.value)}
               />
               <button className="btn">Submit OTP code</button>
             </form>
-          )}
-          {step === "password" && (
+          ) : (
             <form className="resetPassForm">
               <span className="inputErrorMessage">
                 {errorMessage && "Parolu daxil etmədiniz!"}
@@ -145,6 +134,7 @@ const ResetPassword = () => {
                 className="input"
                 id="password"
                 placeholder="Password"
+                value={userPass}
                 onChange={(e) => setUserPass(e.target.value)}
               />
               <button className="btn">Submit new password</button>

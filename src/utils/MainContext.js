@@ -14,6 +14,7 @@ export const MainContext = ({ children }) => {
     const navigate = useNavigate();
 
     const [userIn, setUserIn] = useState(false);
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         checkLogin();
@@ -27,6 +28,7 @@ export const MainContext = ({ children }) => {
         await axios.post("http://localhost:8000/api/check-login", body)
             .then(res => {
                 setUserIn(true);
+                setUser(res.data);
                 navigate("/");
             })
             .catch(err => {
@@ -45,6 +47,8 @@ export const MainContext = ({ children }) => {
         setUserIn,
         checkLogin,
         exitUser,
+        user,
+        setUser,
     };
 
     return <Context.Provider value={globalStates}>{children}</Context.Provider>

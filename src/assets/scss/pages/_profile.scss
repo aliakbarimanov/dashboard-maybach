@@ -33,74 +33,74 @@
 
             .profileBox {
                 width: 40%;
-                height: 650px;
+                height: 450px;
                 padding: 60px 100px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: flex-start;
+                gap: 20px;
                 backdrop-filter: blur(8px);
                 border: 1px solid #ba9f79;
                 border-radius: 15px;
 
-                .inputErrorMessage {
-                    padding: 0 10px 10px;
-                    color: #d00;
-                    font-size: 16px;
-                }
-
-                .input {
-                    outline: none;
-                    border: none;
+                .fullName {
                     width: 100%;
-                    height: 47px;
-                    margin-bottom: 30px;
-                    padding: 13px 20px;
-                    border-radius: 30px;
-                    font-size: 17px;
-                    background-color: #ffffff50;
-                    backdrop-filter: blur(10px);
-                    cursor: pointer;
-                    transition: all .2s ease;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
 
-                    &::placeholder {
-                        color: #000;
-                    }
-
-                    &:hover {
-                        border: 1px solid #000;
+                    span {
+                        font-weight: 600;
+                        font-size: 22px;
+                        color: #070709;
                     }
                 }
 
-                .btn {
-                    outline: none;
-                    border: none;
+                .email {
                     width: 100%;
-                    padding: 13px 0;
-                    border-radius: 30px;
-                    font-size: 17px;
-                    letter-spacing: 2px;
-                    color: #fff;
-                    background-color: #ba9f79;
-                    text-transform: uppercase;
-                    cursor: pointer;
-                    transition: all .3s ease;
+                    color: #070709;
+                    text-align: center;
+                }
 
-                    &:hover {
-                        color: #ba9f79;
+                .profileImageArea {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 60px;
+
+                    .profileImg {
+                        width: 200px;
+                        height: 200px;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+
+                            &.defaultImg {
+                                padding: 50px;
+                            }
+                        }
+                    }
+
+                    input {
+                        width: 80px;
                         background-color: #fff;
+                        color: #fff;
                     }
                 }
 
                 .links {
                     width: 100%;
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: center;
                     align-items: center;
                     padding: 15px;
 
                     a {
-                        font-size: 18px;
+                        font-size: 20px;
                         letter-spacing: 1px;
                         color: #000;
                         transition: all 0.3s ease;
@@ -175,20 +175,6 @@
                     padding: 30px 20px;
                     gap: 20px;
                     border-radius: 15px;
-
-                    .input {
-                        height: 37px;
-                        padding: 10px 16px;
-                        border-radius: 20px;
-                        font-size: 15px;
-                    }
-
-                    .btn {
-                        height: 37px;
-                        padding: 10px 16px;
-                        border-radius: 20px;
-                        font-size: 15px;
-                    }
 
                     .links {
                         padding: 5px 15px;
