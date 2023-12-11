@@ -33,8 +33,10 @@ const ProductsPage = () => {
   const deleteProduct = async (id) => {
     await axios
       .delete(`http://localhost:5000/api/products/${id}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.warn(err));
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => console.log(err));
   };
 
   // search function
@@ -44,7 +46,7 @@ const ProductsPage = () => {
         item.name.toLowerCase().includes(e.target.value.toLowerCase())
       );
       setData(updatedData);
-      if (updatedData.length===0) {
+      if (updatedData.length === 0) {
         setSearchNotification(true);
       }
     } else {

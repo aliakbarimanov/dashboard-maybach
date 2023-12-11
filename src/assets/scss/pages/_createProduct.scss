@@ -28,6 +28,12 @@
         border: 1px solid #fff;
         border-radius: 15px;
 
+        .errorMsg{
+            color: #f00;
+            color: 18px;
+            padding: 10px 0 0 10px;
+        }
+
         label{
             padding: 0 10px;
             font-size: 17px;
@@ -84,7 +90,7 @@
             height: 200px;
             margin: 0 auto 10px;
             border-radius: 10px;
-            background-color: #ffffff50;
+            background-color: transparent;
 
             img{
                 width: 100%;
