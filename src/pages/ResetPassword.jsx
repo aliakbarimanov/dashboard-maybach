@@ -1,87 +1,71 @@
 // import images
 import BackgroundImage from "../assets/images/background.webp";
 
+// import sweet alert
+import Swal from "sweetalert2";
+
 // import react hooks
 import { useState } from "react";
 
-// import axios
-import axios from "axios";
-
+// import api provider
 import { postResetPassword } from "../api/ApiProvider";
-
-// import sweet alert
-// import swal from "sweetalert";
+import { postOtp } from "../api/ApiProvider";
+import { sendNewPass } from "../api/ApiProvider";
 
 const ResetPassword = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userOtp, setUserOtp] = useState("");
   const [userPass, setUserPass] = useState("");
-  const [errorMessage, setErrorMessage] = useState(false);
   const [step, setStep] = useState("email");
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const token = JSON.parse(localStorage.getItem("token"));
 
     if (step === "email") {
-      if (userEmail.trim() === "" || !userEmail.includes("@")) {
-        setErrorMessage(true);
-      } else {
-        setErrorMessage(false);
+      const body = {
+        token: token,
+        email: userEmail,
+      };
 
-        const body = {
-          token: JSON.parse(localStorage.getItem("token")),
-          email: userEmail,
-        };
-
-        await postResetPassword(body)
-          .then((res) => {
-            setStep("otp");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
+      await postResetPassword(body)
+        .then((res) => {
+          setStep("otp");
+        })
+        .catch((err) => {
+          console.warn(err);
+        });
     } else if (step === "otp") {
-      if (userOtp.trim() === "") {
-        setErrorMessage(true);
-      } else {
-        setErrorMessage(false);
+      const body = {
+        token: token,
+        otp: userOtp,
+      };
 
-        const body = {
-          token: JSON.parse(localStorage.getItem("token")),
-          otp: userOtp,
-        };
-
-        await axios
-          .post("http://localhost:8000/api/users/verify-otp", body)
-          .then((res) => {
-            setStep("password");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
+      await postOtp(body)
+        .then((res) => {
+          setStep("password");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-      if (userPass.trim() === "") {
-        setErrorMessage(true);
-      } else {
-        setErrorMessage(false);
+      const body = {
+        token: token,
+        password: userPass,
+      };
 
-        const body = {
-          token: JSON.parse(localStorage.getItem("token")),
-          password: userPass,
-        };
-        console.log(body);
-        // await axios
-        //   .post("http://localhost:8000/api/change-password", body)
-        //   .then((res) => {
-        //     alert("Salam");
-        //     localStorage.removeItem("token");
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   });
-      }
+      await sendNewPass(body)
+        .then((res) => {
+          localStorage.removeItem("token");
+          Swal.fire({
+            title: "Şifrə uğurla dəyişdirildi!",
+            icon: "success",
+          });
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -94,9 +78,6 @@ const ResetPassword = () => {
         <div className="row">
           {step === "email" ? (
             <form className="resetPassForm" onSubmit={onSubmit}>
-              <span className="inputErrorMessage">
-                {errorMessage && "Email daxil etmədiniz!"}
-              </span>
               <input
                 type="text"
                 name="email"
@@ -110,9 +91,6 @@ const ResetPassword = () => {
             </form>
           ) : step === "otp" ? (
             <form className="resetPassForm" onSubmit={onSubmit}>
-              <span className="inputErrorMessage">
-                {errorMessage && "OTP kodu daxil etmədiniz!"}
-              </span>
               <input
                 type="text"
                 name="otp"
@@ -125,10 +103,7 @@ const ResetPassword = () => {
               <button className="btn">Submit OTP code</button>
             </form>
           ) : (
-            <form className="resetPassForm">
-              <span className="inputErrorMessage">
-                {errorMessage && "Parolu daxil etmədiniz!"}
-              </span>
+            <form className="resetPassForm" onSubmit={onSubmit}>
               <input
                 type="password"
                 name="password"
