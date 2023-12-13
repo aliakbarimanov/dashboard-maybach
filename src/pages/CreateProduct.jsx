@@ -57,7 +57,7 @@ const CreateProduct = () => {
 
   const createSchema = object({
     name: string().trim().required("Name is empty!"),
-    price: string().trim().required("Price is empty!"),
+    price: string().trim().required("Price is empty!").matches(/^\d+$/, "Price is not correct!"),
     details: string().trim().required("Details is empty!"),
   });
 
@@ -74,7 +74,7 @@ const CreateProduct = () => {
       <h2 className="createPageTitle">Create new product</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
       {errors.name && <span className="errorMsg">{errors.name.message}</span>}
-        <label for="name">Name:</label>
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
           name="name"
@@ -83,7 +83,7 @@ const CreateProduct = () => {
           placeholder="Product name"
           {...register("name")}
         />
-        <label for="image">Image:</label>
+        <label htmlFor="image">Image:</label>
         <input
           type="file"
           name="image"
@@ -97,7 +97,7 @@ const CreateProduct = () => {
           </div>
         )}
         {errors.price && <span className="errorMsg">{errors.price.message}</span>}
-        <label for="price">Price:</label>
+        <label htmlFor="price">Price:</label>
         <input
           type="text"
           name="price"
@@ -107,7 +107,7 @@ const CreateProduct = () => {
           {...register("price")}
         />
         {errors.details && <span className="errorMsg">{errors.details.message}</span>}
-        <label for="details">Details:</label>
+        <label htmlFor="details">Details:</label>
         <input
           type="text"
           name="details"

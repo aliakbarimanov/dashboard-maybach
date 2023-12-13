@@ -32,9 +32,13 @@ const ProductsPage = () => {
   // delete function
   const deleteProduct = async (id) => {
     await axios
-      .delete(`http://localhost:5000/api/products/${id}`)
+      .delete(`http://localhost:5000/api/v1/maybach/${id}`)
       .then((res) => {
         setData(res.data);
+        Swal.fire({
+          title: "Məhsul uğurla silindi!",
+          icon: "success",
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -70,12 +74,14 @@ const ProductsPage = () => {
       ) : (
         <table>
           <thead>
-            <th>No:</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Details</th>
-            <th>Price</th>
-            <th>Actions</th>
+            <tr>
+              <th>No:</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Details</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
           </thead>
           <tbody>
             {data.map((item, ind) => (

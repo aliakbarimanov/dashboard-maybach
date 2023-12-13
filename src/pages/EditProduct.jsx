@@ -5,7 +5,7 @@ import nullImage from "../assets/images/nullImg.png";
 import { useEffect, useState } from "react";
 
 // import  react-router-dom
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // import axios
 import axios from "axios";
@@ -19,11 +19,17 @@ import { object, string } from "yup";
 // import
 import { yupResolver } from "@hookform/resolvers/yup";
 
+// import sweet alert
+import Swal from "sweetalert2";
+
 const EditProduct = () => {
   const { id } = useParams();
 
   const [data, setData] = useState({});
-  const [productImg, setProductImg] = useState("");
+  const [productImg, setProductImg] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => getSingleData, [id]);
 
@@ -37,28 +43,36 @@ const EditProduct = () => {
   const setImage = (e) => {
     const productImg = e.target.files[0];
     setProductImg(productImg);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(productImg);
+    reader.onload = () => {
+      setPreview(reader.result);
+    };
   };
 
   const onSubmit = async (data) => {
-    const imageFile = new FormData();
-    imageFile.append("productImg", productImg);
-
-    const body = {
-      name: data.name,
-      details: data.details,
-      price: data.price,
-      productImage: imageFile,
-    };
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("details", data.details);
+    formData.append("price", data.price);
+    formData.append("productImage", productImg);
 
     await axios
-      .put(`http://localhost:5000/api/v1/maybach/${id}`, body)
-      .then((res) => console.log(res))
+      .put(`http://localhost:5000/api/v1/maybach/${id}`, formData)
+      .then((res) => {
+        Swal.fire({
+          title: "Məhsul uğurla dəyişdirildi!",
+          icon: "success",
+        });
+        navigate("/products");
+      })
       .catch((err) => console.warn(err));
   };
 
   const editSchema = object({
     name: string().trim().required("Name is empty!"),
-    price: string().trim().required("Price is empty!"),
+    price: string().trim().required("Price is empty!").matches(/^\d+$/, "Price is not correct!"),
     details: string().trim().required("Details is empty!"),
   });
 
@@ -75,7 +89,7 @@ const EditProduct = () => {
       <h2 className="pageTitle">Edit product</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         {errors.name && <span className="errorMsg">{errors.name.message}</span>}
-        <label for="name">Name:</label>
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
           name="name"
@@ -84,7 +98,7 @@ const EditProduct = () => {
           placeholder={data.name}
           {...register("name")}
         />
-        <label for="image">Image:</label>
+        <label htmlFor="image">Image:</label>
         <input
           type="file"
           name="image"
@@ -93,19 +107,21 @@ const EditProduct = () => {
           onChange={setImage}
         />
         <div className="newImageBox">
-          {data.productImage ? (
+          {preview ? (
+            <img src={preview} alt="Product image" />
+          ) : data.productImage ? (
             <img
               src={`http://localhost:5000/${data.productImage}`}
-              alt="New product image"
+              alt="Product image"
             />
           ) : (
-            <img src={nullImage} alt="New product image" />
+            <img src={nullImage} alt="Product image" />
           )}
         </div>
         {errors.price && (
           <span className="errorMsg">{errors.price.message}</span>
         )}
-        <label for="price">Price:</label>
+        <label htmlFor="price">Price:</label>
         <input
           type="text"
           name="price"
@@ -117,7 +133,7 @@ const EditProduct = () => {
         {errors.details && (
           <span className="errorMsg">{errors.details.message}</span>
         )}
-        <label for="details">Details:</label>
+        <label htmlFor="details">Details:</label>
         <textarea
           name="details"
           id="details"
@@ -126,7 +142,7 @@ const EditProduct = () => {
         >
           {data.details}
         </textarea>
-        <button className="btn">Create</button>
+        <button className="btn">Update</button>
       </form>
     </section>
   );

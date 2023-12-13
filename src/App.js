@@ -34,13 +34,13 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
             <Route element={<ProtectedRoutes />}>
               <Route path="/" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/create-product" element={<CreateProduct />} />
-              <Route path="/edit-product/:id" element={<EditProduct/>} />
+              <Route path="/edit-product/:id" element={<EditProduct />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

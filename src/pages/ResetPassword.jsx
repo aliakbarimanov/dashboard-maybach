@@ -7,6 +7,8 @@ import { useState } from "react";
 // import axios
 import axios from "axios";
 
+import { postResetPassword } from "../api/ApiProvider";
+
 // import sweet alert
 // import swal from "sweetalert";
 
@@ -31,8 +33,7 @@ const ResetPassword = () => {
           email: userEmail,
         };
 
-        await axios
-          .post("http://localhost:8000/api/reset-password", body)
+        await postResetPassword(body)
           .then((res) => {
             setStep("otp");
           })
@@ -70,16 +71,16 @@ const ResetPassword = () => {
           token: JSON.parse(localStorage.getItem("token")),
           password: userPass,
         };
-
-        await axios
-          .post("http://localhost:8000/api/change-password", body)
-          .then((res) => {
-            alert("Salam");
-            localStorage.removeItem("token");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        console.log(body);
+        // await axios
+        //   .post("http://localhost:8000/api/change-password", body)
+        //   .then((res) => {
+        //     alert("Salam");
+        //     localStorage.removeItem("token");
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   });
       }
     }
   };
